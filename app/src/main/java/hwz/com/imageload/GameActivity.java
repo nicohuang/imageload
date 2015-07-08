@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import hwz.com.imageload.HttpHelp.HttpHelp;
+import hwz.com.imageload.model.Guess;
 
 
 public class GameActivity extends ActionBarActivity
@@ -75,13 +76,14 @@ public class GameActivity extends ActionBarActivity
                 try
                 {
                     JSONObject object = new JSONObject(result);
-                    String answer = object.getString("Answer");
-                    String title = object.getString("Title");
+                    Guess guess = new Guess();
+                    guess.setAnswer(object.getString("Answer"));
+                    guess.setTitle(object.getString("Title"));
                     tv_answer.setVisibility(View.GONE);
                     progressBar.setVisibility(View.GONE);
 
-                    tv_answer.setText(answer);
-                    tv_title.setText(title);
+                    tv_answer.setText(guess.getAnswer());
+                    tv_title.setText(guess.getTitle());
                 }
                 catch (Exception e)
                 {
